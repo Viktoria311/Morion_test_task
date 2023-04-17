@@ -11,35 +11,32 @@ class configsection {
     typedef std::variant<std::string, bool, int, float> value_t;
     typedef std::unordered_map<std::string, value_t> config_section_t;
 
-    std::shared_ptr<config_section_t> _sections{};
+    config_section_t _sections{};
 
 public:
     configsection() = default;
 
     template<typename T>
     configsection(std::string k, T value) {
-        _sections = std::make_shared<config_section_t>(value);
+        _sections = config_section_t(value);
     }
 
 
     template<typename T>
     T GetOption(const std::string& path) {
-        return std::get<T>(_sections->at(path));
+        return std::get<T>(_sections.at(path));
     }
 
     template<typename T>
     bool SetOption(std::string path, T value) {
-        if (!_sections) {
-            _sections = std::make_shared<config_section_t>();
-        }
-        auto [_, inserted] = (_sections->emplace(path, value));
+        auto [_, inserted] = (_sections.emplace(path, value));
         return inserted;
     }
 
     bool SetOption(const std::string& path, const configsection& value) {
         try {
-            for (auto [kkey, kvalue] : *value._sections) {
-                _sections->emplace(path + "." + kkey, std::move(kvalue));
+            for (auto [kkey, kvalue] : value._sections) {
+                _sections.emplace(path + "." + kkey, std::move(kvalue));
             }
             return true;
         }
@@ -50,7 +47,7 @@ public:
 
     configsection get_section(const std::string& path) {
         configsection section;
-        for (auto [kkey, kvalue] : *_sections) {
+        for (auto [kkey, kvalue] : _sections) {
             if (kkey.rfind(path) == 0) {
                 section.SetOption(kkey.substr(path.length() + 1), kvalue);
             }
