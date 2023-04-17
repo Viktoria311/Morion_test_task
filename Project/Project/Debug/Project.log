@@ -1,0 +1,6 @@
+﻿  CConfigSection.cpp
+C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfigSection.h(46,38): warning C4101: 'e': unreferenced local variable
+  main.cpp
+C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfigSection.h(46,38): warning C4101: 'e': unreferenced local variable
+  Generating Code...
+  Project.vcxproj -> C:\Users\Виктория\github\Morion_test_task\Project\Debug\Project.exe
