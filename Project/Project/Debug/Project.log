@@ -1,6 +1,11 @@
-﻿  CConfigSection.cpp
-C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfigSection.h(43,38): warning C4101: 'e': unreferenced local variable
-  main.cpp
-C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfigSection.h(43,38): warning C4101: 'e': unreferenced local variable
-  Generating Code...
-  Project.vcxproj -> C:\Users\Виктория\github\Morion_test_task\Project\Debug\Project.exe
+﻿  main.cpp
+C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfig.h(22,27): error C2327: 'CConfigSection::var': is not a type name, static, or enumerator
+C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfig.h(22,24): error C2065: 'var': undeclared identifier
+C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfig.h(22,7): error C2923: 'std::map': 'var' is not a valid template type argument for parameter '_Ty'
+C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfig.h(22): message : see declaration of 'var'
+C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfig.h(22,7): error C2976: 'std::map': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(73): message : see declaration of 'std::map'
+C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfig.h(22,29): error C2955: 'std::map': use of class template requires template argument list
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(73): message : see declaration of 'std::map'
+C:\Users\Виктория\github\Morion_test_task\Project\Project\CConfig.h(24,31): error C2512: 'std::map': no appropriate default constructor available
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(73,1): message : see declaration of 'std::map'
