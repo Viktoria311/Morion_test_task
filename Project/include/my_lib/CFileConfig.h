@@ -12,15 +12,24 @@ class CFileConfig : public CConfig
 {
 private:
 	std::string file_name;
-	std::unordered_set<CConfigSection*> sections;
+protected:
+	std::unordered_set<CConfigSection*> sections; // maybe unique_ptr
 public:
 	CFileConfig() : file_name(""), sections() {}
-	virtual void Load(const std::string& str) = 0;
+    virtual ~CFileConfig()
+    {
+        for (auto& ptr : sections)
+        {
+            delete ptr;
+        }
+    }
+	virtual void Load(const std::string& str) = 0; // dynamic memory for sections
     void SetFileName(const std::string& str)
     {
         file_name = str;
     }
-	CConfig* GetSection(const std::string& str) // virtual от CConfig
+
+	CConfig* GetSection(const std::string& str) // virtual from CConfig
 	{
 		for (const auto& ptr_CConfigSection : sections)
 		{
@@ -31,10 +40,27 @@ public:
 
 	operator bool() const
 	{
-		return true;
+        for(const auto& section_ptr : sections)
+        {
+            if (section_ptr == nullptr)
+                return false;
+            section_ptr->operator bool();
+        }
+
+        return true;
 	}
 
-	std::any GetOption(const std::string& str);
+	std::any GetOption(const std::string& str)
+    {
+        for(const auto& section : sections)
+        {
+            for(const auto& pair_key_val : section->RefSettings())
+            {
+                if (pair_key_val.first == str)
+                    return pair_key_val.second;
+            }
+        }
+    }
 };
 
 
