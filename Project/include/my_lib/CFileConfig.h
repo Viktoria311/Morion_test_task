@@ -16,6 +16,20 @@ protected:
 	std::unordered_set<CConfigSection*> sections; // maybe unique_ptr
 public:
 	CFileConfig() : file_name(""), sections() {}
+    CFileConfig(const std::string& file_name) : file_name(file_name), sections() {}
+    CFileConfig(const CFileConfig& obj)
+    {
+        file_name = obj.file_name; // or SetFileName(obj.file_name);
+        for (const auto& ptr : obj.sections)
+        {
+            // decltype and copy constructor of CConfigSection
+            // auto* p_new_section = new CConfigSection(*ptr);
+            auto* p_new_section = new CConfigSection(*ptr);
+
+            sections.insert(p_new_section);
+        }
+        // have unordered_set<CConfigSection*>
+    }
     virtual ~CFileConfig()
     {
         for (auto& ptr : sections)
@@ -76,6 +90,9 @@ class JSONFileConfig : public CFileConfig
 {
 public:
 	void Load(const std::string& str);
+    void Load(); // for demonstration
+    const std::unordered_map<std::string, std::any>& RefSettings() const override;
+    std::unordered_map<std::string, std::any>& RefSettings() override;
 };
 
 class INIFileConfig : public CFileConfig

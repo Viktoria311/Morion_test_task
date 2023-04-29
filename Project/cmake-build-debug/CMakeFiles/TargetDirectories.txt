@@ -1,0 +1,4 @@
+C:/Users/Виктория/github/Morion_test_task/Project/cmake-build-debug/CMakeFiles/my_lib.dir
+C:/Users/Виктория/github/Morion_test_task/Project/cmake-build-debug/CMakeFiles/configparser.dir
+C:/Users/Виктория/github/Morion_test_task/Project/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Виктория/github/Morion_test_task/Project/cmake-build-debug/CMakeFiles/rebuild_cache.dir

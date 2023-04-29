@@ -42,6 +42,36 @@ void XMLFileConfig::Load(const std::string& str)
 
 }
 
+void JSONFileConfig::Load() // for demonstration
+{
+    SetFileName("demonstration file path");
+    std::string json = "{\"project\":\"rapidjson\",\"stars\":10}";
+
+    rapidjson::Document doc;
+
+    doc.Parse(json.c_str());
+
+    // In JSONFileConfig there is  ONE   CConfigSection with big unordered_map
+///*
+ CConfigSection * p = new CConfigSection("demonstration json section name");
+
+    for(auto it = doc.MemberBegin(); it != doc.MemberEnd(); ++it)
+    {
+        p->SetOption(it->name.GetString(), it->value.GetType()); // SetOption(const std::string& str, std::any n)
+    }
+    sections.insert(p);
+ //*/
+
+/*
+    for(decltype(doc.MemberBegin()) it = doc.MemberBegin(); it != doc.MemberEnd(); ++it)
+    {
+        CConfigSection * p = new CConfigSection("section name");
+        p->SetOption(it->name.GetString(), it->value.GetType()); // SetOption(const std::string& str, std::any n)
+        sections.insert(p);
+    }
+*/
+}
+
 void JSONFileConfig::Load(const std::string& str)
 {
     //using namespace rapidjson;
@@ -78,8 +108,16 @@ void JSONFileConfig::Load(const std::string& str)
     }
 }
 
+const std::unordered_map<std::string, std::any>& JSONFileConfig::RefSettings() const
+{
 
+    return (*(sections.cbegin()))->RefSettings();
+}
 
+std::unordered_map<std::string, std::any>& JSONFileConfig::RefSettings()
+{
+    return (*(sections.begin()))->RefSettings();
+}
 
 void INIFileConfig::Load(const std::string& str)
 {

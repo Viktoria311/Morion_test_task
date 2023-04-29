@@ -1,0 +1,69 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "configparser",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "configparser::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-configparser-Debug-13700699de473bae9ec9.json",
+					"name" : "configparser",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "my_lib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-my_lib-Debug-007007ca2915389626f5.json",
+					"name" : "my_lib",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/\u0412\u0438\u043a\u0442\u043e\u0440\u0438\u044f/github/Morion_test_task/Project/cmake-build-debug",
+		"source" : "C:/Users/\u0412\u0438\u043a\u0442\u043e\u0440\u0438\u044f/github/Morion_test_task/Project"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

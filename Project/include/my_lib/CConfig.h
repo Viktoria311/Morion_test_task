@@ -10,10 +10,20 @@ class CConfig // only interface
 {
 public:
 	virtual CConfig* GetSection(const std::string& str) = 0;
-	virtual ~CConfig();
+	virtual ~CConfig() {}
 	virtual operator bool() const = 0;
+    virtual std::any GetOption(const std::string& str) = 0;
+    virtual bool HasOption(const std::string& str)
+    {
+        return true;
+    }
+    virtual const std::string& return_section_name() const
+    {
+        return "";
+    }
+    virtual const std::unordered_map<std::string, std::any>& RefSettings() const = 0;
+    virtual std::unordered_map<std::string, std::any>& RefSettings() = 0;
 };
-
 
 
 class CConfigSection : public CConfig
@@ -24,15 +34,19 @@ protected:
 	std::unordered_map<std::string, std::any> settings;
 public:
 	CConfigSection() : section_name(""), settings() { }
-
+    CConfigSection(const std::string& section_name) : section_name(section_name), settings() { }
     std::unordered_map<std::string, std::any>& RefSettings()
+    {
+        return settings;
+    }
+    const std::unordered_map<std::string, std::any>& RefSettings() const
     {
         return settings;
     }
 
 	operator bool() const
 	{
-        // if unordered_map isn`t empty and there ate all values return true
+        // if unordered_map isn`t empty and there are all values return true
 		if (settings.empty())
 			return false;
         for(const auto& setting_pair: settings)
@@ -42,6 +56,7 @@ public:
         }
 		return true;
 	}
+
     CConfig* GetSection(const std::string& str)
     {
         if (section_name == str)
